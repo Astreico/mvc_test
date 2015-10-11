@@ -68,4 +68,9 @@ class PostController extends Controller
         $this->_model->deletePost($id);
         header('Location: /');
     }
+
+    public function pageNotFoundAction()
+    {
+        $this->render('./application/views/404.php');
+    }
 }

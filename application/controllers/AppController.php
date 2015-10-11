@@ -13,6 +13,11 @@ class AppController
     {
         $request = $_SERVER['REQUEST_URI'];
         $parts = explode('/', trim($request, '/'));
+        if(!empty($parts[0]) && $parts[0] == 404) {
+            $this->_controller = 'Application\\Controllers\\'.'PostController';
+            $this->_action = 'pageNotFoundAction';
+            return;
+        }
         $this->_controller = !empty($parts[0]) ? 'Application\\Controllers\\'.ucfirst($parts[0]).'Controller' : 'Application\\Controllers\\'.'PostController';
         $this->_action = !empty($parts[1]) ? $parts[1].'Action' : 'indexAction';
         if(!empty($parts[2])) {
